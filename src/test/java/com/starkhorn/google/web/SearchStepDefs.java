@@ -2,6 +2,7 @@ package com.starkhorn.google.web;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.net.URL;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -9,7 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -23,7 +24,14 @@ public class SearchStepDefs {
 
 	@Before
 	public void setup() {
-		driver = new FirefoxDriver();
+		
+//		driver = new FirefoxDriver();
+		
+		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+		URL url = classLoader.getResource("web-drivers/IEDriverServer.exe");
+		System.setProperty("webdriver.ie.driver", url.getPath());
+		
+		driver = new InternetExplorerDriver();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 	
