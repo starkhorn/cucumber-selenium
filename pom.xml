@@ -5,29 +5,35 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>Cucumber Selenium</name>
   
+  <properties>
+  	<cucumber.version>1.1.8</cucumber.version>
+  	<junit.version>4.11</junit.version>
+  	<selenium.version>2.42.2</selenium.version>
+  </properties>
+  
   <dependencies>
   	<dependency>
   		<groupId>info.cukes</groupId>
   		<artifactId>cucumber-java</artifactId>
-  		<version>RELEASE</version>
+  		<version>${cucumber.version}</version>
   		<scope>test</scope>
   	</dependency>
   	<dependency>
   		<groupId>info.cukes</groupId>
   		<artifactId>cucumber-junit</artifactId>
-  		<version>RELEASE</version>
+  		<version>${cucumber.version}</version>
   		<scope>test</scope>
   	</dependency>
   	<dependency>
   		<groupId>junit</groupId>
   		<artifactId>junit</artifactId>
-  		<version>RELEASE</version>
+  		<version>${junit.version}</version>
   		<scope>test</scope>
   	</dependency>
   	<dependency>
   		<groupId>org.seleniumhq.selenium</groupId>
   		<artifactId>selenium-java</artifactId>
-  		<version>RELEASE</version>
+  		<version>${selenium.version}</version>
   		<scope>test</scope>
   	</dependency>
   </dependencies>
