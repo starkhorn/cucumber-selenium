@@ -10,6 +10,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
 import cucumber.api.java.After;
@@ -25,14 +27,29 @@ public class SearchStepDefs {
 	@Before
 	public void setup() {
 		
-//		driver = new FirefoxDriver();
+		driver = getChromeDriver();
 		
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	}
+
+	private WebDriver getIEDriver() {
 		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 		URL url = classLoader.getResource("web-drivers/IEDriverServer.exe");
 		System.setProperty("webdriver.ie.driver", url.getPath());
 		
-		driver = new InternetExplorerDriver();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		return new InternetExplorerDriver();
+	}
+	
+	private WebDriver getFirefoxDriver() {
+		return new FirefoxDriver();
+	}
+	
+	private WebDriver getChromeDriver() {
+		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+		URL url = classLoader.getResource("web-drivers/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", url.getPath());
+		
+		return new ChromeDriver();
 	}
 	
 	@After
